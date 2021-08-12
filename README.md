@@ -9,8 +9,7 @@
 - [Shell方式测试模型](#Shell方式测试模型)
 - [服务形式运行bot](#服务形式运行bot)
 - [参考](#参考)
-- [更新记录](#更新记录)
-- [如有问题可以issue](#如有问题可以issue)
+
 
 ## [English ReadMe](/en-README.md)
 
@@ -105,24 +104,15 @@
  ```
 
 
-
-
 ## 训练Rasa模型
 1. Rasa训练数据集的构造：使用到了 [**Chatito工具**](https://rodrigopivi.github.io/Chatito/) 
 
 1. 下载用于mitie的模型文件放到```chat/data```文件夹下， [**百度网盘**](https://pan.baidu.com/s/1kNENvlHLYWZIddmtWJ7Pdg) ，密码：p4vx，
 或者 [**Mega云盘**](https://mega.nz/#!EWgTHSxR!NbTXDAuVHwwdP2-Ia8qG7No-JUsSbH5mNQSRDsjztSA) 
-
-    <!--1. 第一次用此```Pipeline```训练时，输入训练命令后会自动下载模型，默认下载保存的目录见 [**Cache Models**](https://huggingface.co/transformers/installation.html#caching-models)-->
  
-    <!--1. **重要：** 若出现模型加载报错问题，按如下改名
-        - 将 ```bert-base-chinese-config.json``` 更名为 ```config.json```
-        - 将 ```bert-base-chinese-vocab.txt``` 更名为 ```vocab.txt```
-        - 将 ```bert-base-chinese-tf_model.h5``` 更名为 ```tf_model.h5```-->
- 
-1. 训练命令举例: 开启terminal/cmd进入chat目录，然后输入命令，命令含义参照 [**Rasa文档**](https://rasa.com/docs/rasa/command-line-interface)
+1. 训练命令举例: 开启控制台,进入\Intelligent-Chatbot\chat目录下，然后输入命令，命令含义参照 [**Rasa文档**](https://rasa.com/docs/rasa/command-line-interface)
     ```shell
-    rasa train -c config/config_pretrained_embeddings_mitie_zh.yml --data data/medical/M3-training_dataset_1564317234.json data/medical/stories.md --out models/medicalRasa2 --domain config/domains.yml --num-threads 5 --augmentation 100 -vv
+    rasa train --config config/zh_jieba_mitie_embeddings_config.yml --domain config/domain.yml --out models/medicalRasa2 --data data/ 
     ```
 
 ## Shell方式测试模型
@@ -173,10 +163,6 @@
 - 前端设计参考 [**WeatherBot**](https://github.com/howl-anderson/WeatherBot)，此项目采用的是nlu和core合并前的rasa。
 
 - 所以前端使用了webchat.js， [**rasa-webchat**](https://github.com/mrbot-ai/rasa-webchat)
-
--  [**Scrapy**](https://scrapy.org)
-
--  [**Neo4j**](https://neo4j.org)
 
 -  [**py2neo**](https://py2neo.org)
 
