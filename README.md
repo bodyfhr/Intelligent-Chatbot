@@ -53,7 +53,7 @@
 - ***注意***： rasa-nlu和rasa-core已经合并成rasa
 
 
-## 配置环境
+## 环境配置
 1. python 3.6 +
 
 2. 下载zip包或者git clone 
@@ -95,8 +95,14 @@
             charset="utf8",
     )
   ```
-- 本系统主要存储的数据有:用户id,会话id,用户输入的内容,用户ip地址。(系统配置文件：\Intelligent-Chatbot\chat\MyChannel\myio.py)
-
+- 本系统主要存储的数据有:用户id,会话id,用户输入的内容,问答时间,用户ip地址。(系统配置文件：\Intelligent-Chatbot\chat\MyChannel\myio.py)
+ ```
+ 用户id（user_id）：用于不同用户，就相当给定每个用户一个号码。因为同时访问该系统的用户非常多，我们要将区分开来。
+ 会话id（session_id）：用于解决用户每一轮的对话。用户输入对话有可能是单轮，也有可能是多轮，因此我们要将每一轮对话区分开来，也是为了解决这一轮对话结束，开启新一轮对话的标志。
+ 用户输入的内容（content）：用于记录用户每一轮输入对话的内容。
+ 问答时间（when）：用于记录用户每一轮提问的时间。
+ 用户ip地址（ip_address）：用于记录用户访问系统的用户IP地址。
+ ```
 
 
 
