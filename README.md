@@ -25,9 +25,9 @@
 
 ![image](static/img/index.jpg)
 
-![image](static/img/weather-QA.jpg)
-
 ![image](static/img/Chat-QA.jpg)
+
+![image](static/img/weather-QA.jpg)
 
 
 ## 系统说明
