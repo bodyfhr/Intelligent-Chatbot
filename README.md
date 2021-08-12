@@ -1,7 +1,7 @@
 ## 目录
 - [Rasa版本](#Rasa版本)
 - [在线测试地址](#在线测试地址)
-- [GIF动图展示](#GIF动图展示)
+- [效果图展示](#效果图展示)
 - [说明](#说明)
 - [配置环境](#配置环境)
 - [数据导入neo4j](#数据导入neo4j)
@@ -22,21 +22,19 @@
 ## 在线测试地址
 - http://www.ylznwz.work:5000/
 
-- 在线测试网址用的上海服务器，低配，加载速度慢，各位轻虐~~ >.<
+- 在线测试网址用的是腾讯云低配的服务器，加载速度慢，各位轻虐~~ >.<
 
 
-## GIF动图展示
-- 2020/05/20 聊天窗的颜色略有不同
+## 效果图展示
 
-![image](img/demo-1.gif)
+![image](static/img/demo-1.gif)
 
-![image](img/demo-2.gif)
+![image](static/img/demo-2.gif)
 
 
 ## 说明
-- 本程序实现的是基于中文的医疗知识图谱的问答机器人MedicalKBQA，
-是基于 [**Rasa-2.0.x**](https://rasa.com/) 版本及其支持的外部组件实现的，
-并使用了图数据库 [**Neo4j**](https://neo4j.com/) 构建知识图谱。
+本程序是基于 [**Rasa-1.9.5**](https://rasa.com/) 版本及其支持的外部组件实现的智能聊天机器人系统，
+具体包括闲聊和天气查询，智能问答等功能。
 
 - Rasa的```Pipeline```配置如下：
     ```yaml
@@ -44,27 +42,27 @@
       - name: "MitieNLP"
         model: "data/total_word_feature_extractor_zh.dat"
       - name: "JiebaTokenizer"
-        dictionary_path: "jieba_userdict"
+        dictionary_path: "data/dict"
       - name: "MitieEntityExtractor"
       - name: "EntitySynonymMapper"
       - name: "RegexFeaturizer"
       - name: "MitieFeaturizer"
-      - name: "SklearnIntentClassifier"
+      - name: "EmbeddingIntentClassifier"
     ```
 
 - ***注意***： rasa-nlu和rasa-core已经合并成rasa
 
 
 ## 配置环境
-1. Python ≈ 3.8.5
+1. python 3.6 +
 
 1. 下载zip包或者git clone 
 
-1. 进入Doctor-Friende目录，conda记得activate环境
+1. 进入Intelligent-Chatbot目录，conda记得activate环境
 
 1. 安装Mitie其实很简单，参考[安装Rasa所需的MITIE组件](https://blog.csdn.net/pengyou200902/article/details/109183361)
 
-1. 然后在命令行使用命令安装依赖
+1. 然后在命令行使用命令安装项目需求的依赖包
     ```shell
    pip install -r requirements.txt
     ```
