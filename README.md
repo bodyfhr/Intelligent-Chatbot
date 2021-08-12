@@ -23,11 +23,11 @@
 
 ## 效果图展示
 
-![image](static/img/index.jpg)
+![image](https://github.com/bodyfhr/Intelligent-Chatbot/blob/master/static/img/index.jpg)
 
-![image](static/img/Chat-QA.jpg)
+![image](https://github.com/bodyfhr/Intelligent-Chatbot/blob/master/static/img/Chat-QA.jpg)
 
-![image](static/img/weather-QA.jpg)
+![image](https://github.com/bodyfhr/Intelligent-Chatbot/blob/master/static/img/weather-QA.jpg)
 
 
 ## 系统说明
