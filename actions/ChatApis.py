@@ -15,7 +15,7 @@ def unit_chat(chat_input):
     Parameters
       ----------
       chat_input : str
-          用户发送天内容
+          用户发送聊天内容
       user_id : str
           发起聊天用户ID，可任意定义
     Return
