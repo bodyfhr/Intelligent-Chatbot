@@ -2,9 +2,9 @@
 - [Rasa版本](#Rasa版本)
 - [在线测试地址](#在线测试地址)
 - [效果图展示](#效果图展示)
-- [说明](#说明)
-- [配置环境](#配置环境)
-- [数据导入neo4j](#数据导入neo4j)
+- [系统说明](#系统说明)
+- [环境配置](#环境配置)
+- [数据库存储数据](#数据库存储数据)
 - [训练Rasa模型](#训练Rasa模型)
 - [Shell方式测试模型](#Shell方式测试模型)
 - [服务形式运行bot](#服务形式运行bot)
@@ -32,8 +32,8 @@
 ![image](static/img/demo-2.gif)
 
 
-## 说明
-本程序是基于 [**Rasa-1.9.5**](https://rasa.com/) 版本及其支持的外部组件实现的智能聊天机器人系统，
+## 系统说明
+本系统是基于 [**Rasa-1.9.5**](https://rasa.com/) 版本及其支持的外部组件实现的智能聊天机器人系统，
 具体包括闲聊和天气查询，智能问答等功能。
 
 - Rasa的```Pipeline```配置如下：
@@ -56,23 +56,23 @@
 ## 配置环境
 1. python 3.6 +
 
-1. 下载zip包或者git clone 
+2. 下载zip包或者git clone 
 
-1. 进入Intelligent-Chatbot目录，conda记得activate环境
+3. 进入Intelligent-Chatbot目录，conda记得activate环境
 
-1. 安装Mitie其实很简单，具体步骤如下：
+4. 安装Mitie其实很简单，具体步骤如下：
 - conda activate激活你的python环境（或者venv激活）
 - pip或者conda install cmake以及boost
 - 终端或者cmd进入你的工作目录或者随便哪里，git clone https://github.com/mit-nlp/MITIE.git
 - cd进MITIE的文件夹，python setup.py build
 - 最后 python setup.py install
 
-1. 然后在命令行使用命令安装项目需求的依赖包
+5. 然后在命令行使用命令安装项目需求的依赖包
     ```shell
    pip install -r requirements.txt
     ```
    
-1. *提示*：
+6. *提示*：
 
     - 国内推荐使用镜像加速（此命令是临时使用镜像，并非全局都用），比如：
         ```shell
@@ -82,33 +82,23 @@
     - 如果你有代理，可以在pip install命令后加上 --proxy=地址:端口
 
 
-## 数据导入neo4j
-- 前提是已经有了可以连接的neo4j graph
+## 数据库存储数据
+- 本系统是采用MySQL数据库,具体配置如下(系统配置文件：\Intelligent-Chatbot\chat\MyChannel\MyUtils.py):
+ ```
+ def get_record_db_cursor():
+        db = pymysql.connect(
+            host="localhost",
+            port=端口号,
+            user="用户名",
+            passwd="密码",
+            db="数据库名",
+            charset="utf8",
+    )
+  ```
+- 本系统主要存储的数据有:用户id,会话id,用户输入的内容,用户ip地址。(系统配置文件：\Intelligent-Chatbot\chat\MyChannel\myio.py)
 
-- 解压```MedicalSpider/data/data.tar.gz```，直接解压到```MedicalSpider/data```下，不要新建文件夹，则```medical.json```是所有数据的汇总，
-将会被导入到你的知识图谱中
 
-- 修改```MedicalSpider.process_data```下的```create_graph.py```，把neo4j数据库的链接信息改成你自己的，然后运行该文件
-（为了防止路径问题，建议使用Pycharm打开本项目后运行）
 
-- *关于爬虫*：爬虫实现是使用了 [**scrapy**](https://scrapy.org) 库，若想运行，可以在Doctor-Friende目录下运行```SpiderMain.py```
-
-- 整体规模：
-    - 13,635 nodes (5 labels)
-    - 114,163 relationships (6 types)
-
-![image](img/graphdb.png)
-
-- 数据结构
-
-| 实体类型 | 含义 | 数量 | 举例 |  
-| :--- | :---: | :---: | :--- |  
-| Disease | 疾病 | 6,143 |  百日咳\n头痛|  
-| Department | 科室 | 54 |  儿科\n小儿内科|  
-| Drug | 药品 | 1,124 |  硫辛酸片\n曲克芦丁片|  
-| Food | 食物 | 378 |  蟹肉\n鱿鱼(干)|  
-| Symptom | 疾病症状 | 5,936 |  角弓反张\n视网膜Roth斑|  
-| Total | 总计 | 13,635 | 约1.3万实体量级|  
 
 
 ## 训练Rasa模型
