@@ -6,9 +6,9 @@
 - [环境配置](#环境配置)
 - [数据库存储数据](#数据库存储数据)
 - [训练模型](#训练模型)
-- [Shell方式测试模型](#Shell方式测试模型)
-- [服务形式运行bot](#服务形式运行bot)
-- [参考](#参考)
+- [测试模型](#测试模型)
+- [运行服务](#运行服务)
+- [系统参考](#系统参考)
 
 
 ## [English ReadMe](/en-README.md)
@@ -107,51 +107,50 @@
 ## 训练模型
 1. Rasa训练数据集的构造：使用到了 [**Chatito工具**](https://rodrigopivi.github.io/Chatito/) 
 
-1. 下载用于mitie的模型文件放到```chat/data```文件夹下， [**百度网盘**](https://pan.baidu.com/s/1kNENvlHLYWZIddmtWJ7Pdg) ，密码：p4vx，
+2. 下载用于mitie的模型文件放到```chat/data```文件夹下， [**百度网盘**](https://pan.baidu.com/s/1kNENvlHLYWZIddmtWJ7Pdg) ，密码：p4vx，
 或者 [**Mega云盘**](https://mega.nz/#!EWgTHSxR!NbTXDAuVHwwdP2-Ia8qG7No-JUsSbH5mNQSRDsjztSA) 
  
-1. 训练命令举例: 开启控制台,进入\Intelligent-Chatbot\chat目录下，然后输入命令，命令含义参照 [**Rasa文档**](https://rasa.com/docs/rasa/command-line-interface)
+3. 训练命令举例: 开启控制台,进入\Intelligent-Chatbot\chat目录下，然后输入命令，命令含义参照 [**Rasa文档**](https://rasa.com/docs/rasa/command-line-interface)
     ```shell
     rasa train --config config/zh_jieba_mitie_embeddings_config.yml --domain config/domain.yml --out models/medicalRasa2 --data data/ 
     ```
 
-## Shell方式测试模型
+## 测试模型
 1. 修改```endpoints.yml```中的```tracker_store```字段，将数据库连接信息换成你自己的（现成的db或新建db皆可，
 我新建了一个db，Rasa会生成一个名为```events```的表），```dialect```字段是用了
  [**SQLAlchemy**](https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls)
 里的，这个链接是Rasa官方文档在 [**Tracker Store**](https://rasa.com/docs/rasa/api/tracker-stores/)
 给出的，详情参考官方文档
 
-1. 若要自己定制消息记录方式，请修改```MyChannel/MyUtils.py```中数据库连接信息，并确保你的MySQL数据库中
+2. 若要自己定制消息记录方式，请修改```MyChannel/MyUtils.py```中数据库连接信息，并确保你的MySQL数据库中
 有```message_received```表，当然你可以取别的名字，记得在```myio.py```的```handle_message```函数里把对应代码改掉
 
-1. ```chat/MyActions```下的```actions.py```中同样需要先把neo4j数据库的链接信息改成你自己的
-
-1. 打开2个终端，都cd到chat目录下，conda记得activate环境  
-
-1. 一个终端（启动Action Server）
+3. 打开2个终端，记得在虚拟环境下。
+- 一个终端（启动Action服务，无需切换到chat目录下）
     ```shell
-   rasa run actions --actions MyActions.actions --cors "*" -vv  
+   rasa run actions --actions actions --cors "*" -vv
     ```
-   
-1. 另一个终端（Rasa Shell）
+- 另一个终端（Rasa Shell，需切换到chat目录下）
     ```shell
-   rasa shell -m models/medicalRasa2/20201108-200002.tar.gz --endpoints config/endpoints.yml -vv
+   rasa shell -m models/medicalRasa2/20210521-180159.tar.gz --endpoints config/endpoints.yml -vv
     ```
 
-## 服务形式运行bot
-1. 参照上方除了最后一步其他都一样
-
-1. 另一个终端（启动NLU & Core Server）
+## 运行服务
+打开3个终端控制台，记得在虚拟环境下。
+- 第一个终端（启动Action服务，无需切换到chat目录下）
     ```shell
-   rasa run --enable-api -m models/medicalRasa2/20201108-200002.tar.gz --port 5000 --endpoints config/endpoints.yml --credentials config/credentials.yml -vv
+   rasa run actions --actions actions --cors "*" -vv
     ```
-   
-1. 前端页面位于： [**ChatHTML**](https://github.com/pengyou200902/ChatHTML)
-   如果用了我写的自定义socketio接口，请把前端中的socketPath做对应修改，默认就改成```/mysocket.io/```
+- 第二个终端（启动Rasa服务，需切换到chat目录下）
+    ```shell
+  rasa run --enable-api -m models/medicalRasa2/20210521-180159.tar.gz --port 5005 --endpoints config/endpoints.yml --credentials config/credentials.yml -vv
+    ```
+- 第三个终端（启动服务器，无需切换到chat目录下）
+    ```shell
+    python ask.py
+    ```
 
-
-## 参考
+## 系统参考
 - 刘焕勇老师的 [**QABasedOnMedicalKnowledgeGraph**](https://github.com/liuhuanyong/QASystemOnMedicalKG)  
 
 - 国内作者写的 [**Rasa_NLU_Chi**](https://github.com/crownpku/Rasa_NLU_Chi)，已经被rasa收入官方文档了，新版rasa已经有支持中文的方式了。
