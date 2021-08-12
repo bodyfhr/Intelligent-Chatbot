@@ -5,7 +5,7 @@
 - [系统说明](#系统说明)
 - [环境配置](#环境配置)
 - [数据库存储数据](#数据库存储数据)
-- [训练Rasa模型](#训练Rasa模型)
+- [训练模型](#训练模型)
 - [Shell方式测试模型](#Shell方式测试模型)
 - [服务形式运行bot](#服务形式运行bot)
 - [参考](#参考)
@@ -104,7 +104,7 @@
  ```
 
 
-## 训练Rasa模型
+## 训练模型
 1. Rasa训练数据集的构造：使用到了 [**Chatito工具**](https://rodrigopivi.github.io/Chatito/) 
 
 1. 下载用于mitie的模型文件放到```chat/data```文件夹下， [**百度网盘**](https://pan.baidu.com/s/1kNENvlHLYWZIddmtWJ7Pdg) ，密码：p4vx，
@@ -149,10 +149,6 @@
    
 1. 前端页面位于： [**ChatHTML**](https://github.com/pengyou200902/ChatHTML)
    如果用了我写的自定义socketio接口，请把前端中的socketPath做对应修改，默认就改成```/mysocket.io/```
-
-1. *提示*：
-
-    - 部署在服务器推荐使用```nohup```等类似的方式在后台运行 ，并将控制台输出指向指定的文件。 
 
 
 ## 参考
