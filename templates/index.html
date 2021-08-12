@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>小瑞问答客服</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<style>
+    span{cursor: pointer;}
+</style>
+<body id="chat-body">
+    <div id="webchat"></div>
+<div class="container">
+	<h1 class="effect1">您好，欢迎光临智能聊天机器人系统！</h1>
+	<p class="p" style="color: #003A9B;">我在右下角请问有什么可以帮助您</p>
+</div>
+
+<section>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+</section>
+</body>
+<script src="/static/js/webchat-latest.js"></script>
+<script src="/static/js/jquery-1.10.2.js"></script>
+<script src='/static/js/anime.min.js'></script>
+<script src="/static/js/script.js"></script>
+<script src="/static/js/webchat-0.5.8.js"></script>
+
+
+
+<script>
+   WebChat.default.init({
+      selector: '#webchat',
+      initPayload: '/first',
+      interval: 0, // 1000 ms between each message
+      customData: { from_user_id: 1 }, // arbitrary custom data. Stay minimal as this will be added to the socket
+      socketUrl: 'http://121.5.179.21:5005',
+      socketPath: '/mysocket.io/',
+      title: '智能聊天机器人系统',
+      subtitle: 'Intelligent Chatbot System',
+      inputTextFieldHint: '请输入一条你想要查询的信息...',
+      connectingText: '等待服务器...',
+      hideWhenNotConnected: false,
+      fullScreenMode: false,
+      profileAvatar: "{{ url_for('static',filename = 'assets/customer_service_robot.jpg') }}",
+      // openLauncherImage: 'myCustomOpenImage.png',
+      // closeLauncherImage: 'myCustomCloseImage.png',
+      params: {
+        images: {
+          dims: {
+            width: 300,
+            height: 200
+          }
+        },
+        storage: 'session'
+      }
+    })
+
+</script>
+
+
