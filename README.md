@@ -23,9 +23,11 @@
 
 ## 效果图展示
 
-![image](static/img/demo-1.gif)
+![image](static/img/index.jpg)
 
-![image](static/img/demo-2.gif)
+![image](static/img/weather-QA.jpg)
+
+![image](static/img/Chat-QA.jpg)
 
 
 ## 系统说明
