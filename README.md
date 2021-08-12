@@ -11,9 +11,6 @@
 - [系统参考](#系统参考)
 
 
-## [English ReadMe](/en-README.md)
-
-
 ## Rasa版本
 - 此处为***Rasa==1.9.5***(其它Rasa版本请切换branch)
 
