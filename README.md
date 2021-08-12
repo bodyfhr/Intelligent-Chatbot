@@ -61,16 +61,11 @@
 1. 进入Intelligent-Chatbot目录，conda记得activate环境
 
 1. 安装Mitie其实很简单，具体步骤如下：
-
-(1).conda activate激活你的python环境（或者venv激活）
-
-(2).pip或者conda install cmake以及boost
-
-(3).终端或者cmd进入你的工作目录或者随便哪里，git clone https://github.com/mit-nlp/MITIE.git
-
-(4).cd进MITIE的文件夹，python setup.py build
-
-(5).最后 python setup.py install
+- conda activate激活你的python环境（或者venv激活）
+- pip或者conda install cmake以及boost
+- 终端或者cmd进入你的工作目录或者随便哪里，git clone https://github.com/mit-nlp/MITIE.git
+- cd进MITIE的文件夹，python setup.py build
+- 最后 python setup.py install
 
 1. 然后在命令行使用命令安装项目需求的依赖包
     ```shell
